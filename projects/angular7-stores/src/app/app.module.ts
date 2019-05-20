@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ProductsModule } from './products/products.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { httpInterceptorProviders } from './http-interceptors';
+import { CustomMaterialModule } from './custom-material.module';
 
 @NgModule( {
   declarations: [
@@ -22,6 +23,7 @@ import { httpInterceptorProviders } from './http-interceptors';
     HttpClientModule,
     BrowserAnimationsModule,
     ProductsModule,
+    CustomMaterialModule,
     AppRoutingModule
   ],
   providers: [ httpInterceptorProviders ],

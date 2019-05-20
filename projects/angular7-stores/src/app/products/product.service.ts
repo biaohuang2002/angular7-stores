@@ -42,11 +42,4 @@ export class ProductService {
       'Something bad happened; please try again later.' );
   };
 
-  makeIntentionalError() {
-    return this.http.get( 'not/a/real/url' ).pipe(
-      retry( 3 ), // retry a failed request up to 3 times
-      catchError( this.handleError )
-    );
-  }
-
 }
