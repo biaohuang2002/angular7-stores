@@ -8,8 +8,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AppRoutingModule } from './app-routing.module';
 import { ProductsModule } from './products/products.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { httpInterceptorProviders } from './http-interceptors';
 
-@NgModule({
+@NgModule( {
   declarations: [
     AppComponent,
     PageNotFoundComponent,
@@ -23,7 +24,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ProductsModule,
     AppRoutingModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
+  providers: [ httpInterceptorProviders ],
+  bootstrap: [ AppComponent ]
+} )
 export class AppModule { }
