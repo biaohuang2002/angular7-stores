@@ -1,54 +1,49 @@
-<div style="display: flex; flex-direction: column; position: absolute; top: 128px; bottom: 0; left: 0; right: 0;">
-	<mat-toolbar color="primary" style="box-shadow:0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12); position: fixed; top: 0; left: 0; right: 0; z-index: 2;">
-		<mat-toolbar-row>
-			<button mat-button [matMenuTriggerFor]="menu">
-				<mat-icon>more_vert</mat-icon>
-			</button>
-			<mat-menu #menu="matMenu">
-				<button mat-menu-item>
-					<mat-icon>dialpad</mat-icon>
-					<span>Redial</span>
-				</button>
-				<button mat-menu-item disabled>
-					<mat-icon>voicemail</mat-icon>
-					<span>Check voicemail</span>
-				</button>
-				<button mat-menu-item>
-					<mat-icon>notifications_off</mat-icon>
-					<span>Disable alerts</span>
-				</button>
-		  </mat-menu>
-		  <h1>{{title}}</h1>
-		</mat-toolbar-row>
-		<mat-toolbar-row>
-		  <a mat-button routerLink="/dashboard">Dashboard</a> 
-		  <a mat-button routerLink="/products" routerLinkActive="active">Products</a> 
-		  <a mat-button routerLink="/product/0" routerLinkActive="active">Product Detail</a>
-		</mat-toolbar-row>
-	</mat-toolbar>
-	
-	<div style="overflow-y: auto;">
-		<mat-card class="example-card">
-		  <mat-card-header>
-		    <div mat-card-avatar class="example-header-image"></div>
-		    <mat-card-title>Shiba Inu</mat-card-title>
-		    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-		  </mat-card-header>
-		  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-		  <mat-card-content>
-		    <p>
-		      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-		      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-		      bred for hunting.
-		    </p>
-				<div>
-				  <router-outlet></router-outlet>
-				</div>
-		  </mat-card-content>
-		  <mat-card-actions>
-		    <button mat-button>LIKE</button>
-		    <button mat-button>SHARE</button>
-		  </mat-card-actions>
-		</mat-card>
-	</div>
+<div class="container">
+   <header class="banner-header">
+     <mat-toolbar style="background: white;">
+       <mat-toolbar-row>
+         <h1>{{title}}</h1>
+       </mat-toolbar-row>
+     </mat-toolbar>
+   </header>
+   
+   <nav class="navbar">
+     <mat-toolbar color="warn" style="min-height: auto;">
+      <mat-toolbar-row style="height: auto;">
+        <button mat-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>dialpad</mat-icon>
+            <span>Redial</span>
+          </button>
+          <button mat-menu-item disabled>
+            <mat-icon>voicemail</mat-icon>
+            <span>Check voicemail</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>notifications_off</mat-icon>
+            <span>Disable alerts</span>
+          </button>
+        </mat-menu>
+        <a mat-button routerLink="/dashboard">Dashboard</a> 
+        <a mat-button routerLink="/products" routerLinkActive="active">Products</a> 
+        <a mat-button routerLink="/product/0" routerLinkActive="active">Product Detail</a>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </nav>
+
+  <div class="main">  
+    <main role="main">
+      <h2>Products</h2>
+      <router-outlet></router-outlet>
+    </main>
+    
+    <!-- And here is our main footer that is used across all the pages of our website -->
+  
+    <footer>
+      <p>©Copyright 2050 by nobody. All rights reversed.</p>
+    </footer>
+  </div>
 </div>

@@ -42,4 +42,8 @@ export class ProductService {
       'Something bad happened; please try again later.' );
   };
 
+  getProductListings() {
+    return this.http.get( '/products//product-listings', { observe: 'response' } );
+  }
+
 }

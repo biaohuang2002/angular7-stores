@@ -1,8 +1,33 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.banner-header {
+	color: white;
+}
+
+.navbar {
+  box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+	position: relative;
+  z-index: 2;
+}
+
+.main {
+	overflow-y: auto;
+}
+
 .example-card {
-  max-width: 400px;
+	max-width: 400px;
 }
 
 .example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
+	background-image:
+		url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+	background-size: cover;
 }

@@ -10,6 +10,7 @@ import { throwError } from 'rxjs';
   styleUrls: ['./product-list.component.css']
 } )
 export class ProductListComponent implements OnInit {
+  productListings;
   config: Config;
   headers: string[];
   error: any;
@@ -17,7 +18,7 @@ export class ProductListComponent implements OnInit {
   constructor( public productService: ProductService ) { }
 
   ngOnInit() {
-    this.showConfigResponse();
+    this.showProductListings();
   }
 
   showConfig() {
@@ -39,5 +40,14 @@ export class ProductListComponent implements OnInit {
         // access the body directly, which is typed as `Config`.
         this.config = { ...resp.body };
       } );
+  }
+  
+  showProductListings() {
+    this.productService.getProductListings().subscribe(
+      ( data ) => {
+        this.productListings = data.body;
+      },
+      error => this.error = error // error path
+    );
   }
 }
