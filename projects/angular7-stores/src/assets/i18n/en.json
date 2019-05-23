@@ -1,0 +1,14 @@
+{
+  "HOME": {
+    "TITLE": "Hello Angular with ngx-translate!",
+    "SELECT": "Change language"
+  },
+  "mat-paginator-intl": {
+   "first_page": "First page en",
+   "items_per_page": "Items per page en",
+   "last_page": "Last page en",
+   "next_page": "Next page en",
+   "previous_page": "Previous page en",
+   "of": "of en"
+  }
+}
