@@ -1,6 +1,7 @@
 <div style="display:flex;flex-direction:row;flex-wrap: wrap;">
-  <div *ngFor="let item of productListings; index as i;" style="width: 33.33333%;height:100%;padding: 8px;box-sizing: border-box;">
+  <div *ngFor="let item of productListings; index as i;" class="product-item">
     <article class="example-card">
+      <a routerLink="/product/{{item.handle}}" style="text-decoration: none;">
       <mat-card>
         <mat-card-header>
           <div mat-card-avatar [ngStyle]="{'background-image':'url('+item.images[item.images.length-1].src+')','background-size':'cover'}"></div>
@@ -8,14 +9,16 @@
           <mat-card-subtitle>{{item.product_type}}</mat-card-subtitle>
         </mat-card-header>
         <img mat-card-image src="{{item.images[0].src}}" alt="Photo of a Shiba Inu">
-<!--         <mat-card-content> -->
+        <mat-card-content>
 <!--           <p [innerHTML]="item.body_html"></p> -->
-<!--         </mat-card-content> -->
-        <mat-card-actions>
-          <button mat-button>LIKE</button>
-          <button mat-button>SHARE</button>
-        </mat-card-actions>
-      </mat-card>      
+          <span>{{item.variants[0].price | currency}}</span>
+        </mat-card-content>
+<!--         <mat-card-actions> -->
+<!--           <button mat-button>LIKE</button> -->
+<!--           <button mat-button>SHARE</button> -->
+<!--         </mat-card-actions> -->
+      </mat-card>
+      </a>      
     </article>
   </div>
 </div>
