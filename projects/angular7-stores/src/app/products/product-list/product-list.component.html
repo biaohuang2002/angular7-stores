@@ -1,9 +1,9 @@
 <div style="display:flex;flex-direction:row;flex-wrap: wrap;">
-  <div *ngFor="let item of productListings; index as i;" style="width: 33.33333%;">
+  <div *ngFor="let item of productListings; index as i;" style="width: 33.33333%;height:100%;padding: 8px;box-sizing: border-box;">
     <article class="example-card">
       <mat-card>
         <mat-card-header>
-          <div mat-card-avatar [ngStyle]="{'background-image':'url('+item.images[1].src+')','background-size':'cover'}"></div>
+          <div mat-card-avatar [ngStyle]="{'background-image':'url('+item.images[item.images.length-1].src+')','background-size':'cover'}"></div>
           <mat-card-title style="font-size:14px;">{{item.title}}</mat-card-title>
           <mat-card-subtitle>{{item.product_type}}</mat-card-subtitle>
         </mat-card-header>

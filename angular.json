@@ -8,7 +8,11 @@
       "sourceRoot": "projects/angular7-stores/src",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -26,6 +30,11 @@
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "projects/angular7-stores/src/styles.css"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/angular7-stores/src/assets/bootstrap/scss"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
