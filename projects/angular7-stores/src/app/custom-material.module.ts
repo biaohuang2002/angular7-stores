@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { 
+import {
   MatButtonModule
   , MatCardModule
   , MatGridListModule
   , MatIconModule
   , MatMenuModule
-  , MatToolbarModule } from '@angular/material';
+  , MatPaginatorModule
+  , MatToolbarModule
+} from '@angular/material';
+
 
 @NgModule( {
   declarations: [],
@@ -20,6 +23,7 @@ import {
     , MatGridListModule
     , MatIconModule
     , MatMenuModule
+    , MatPaginatorModule
     , MatToolbarModule
   ]
 } )

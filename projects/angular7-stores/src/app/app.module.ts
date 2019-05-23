@@ -11,6 +11,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { httpInterceptorProviders } from './http-interceptors';
 import { CustomMaterialModule } from './custom-material.module';
 
+import { MatPaginatorIntl } from '@angular/material';
+import { MatPaginationIntlService } from './mat-pagination-intl.service';
+
+
 @NgModule( {
   declarations: [
     AppComponent,
@@ -26,7 +30,12 @@ import { CustomMaterialModule } from './custom-material.module';
     CustomMaterialModule,
     AppRoutingModule
   ],
-  providers: [ httpInterceptorProviders ],
-  bootstrap: [ AppComponent ]
+  providers: [
+    httpInterceptorProviders,
+    { provide: MatPaginatorIntl, useClass: MatPaginationIntlService }
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 } )
 export class AppModule { }

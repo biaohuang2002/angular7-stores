@@ -14,11 +14,17 @@ export class ProductListComponent implements OnInit {
   config: Config;
   headers: string[];
   error: any;
+  pageSizeOptions: number[] = [];
 
   constructor( public productService: ProductService ) { }
 
   ngOnInit() {
-    this.showProductListings();
+    this.productListings = {
+      items: [],
+      pageIndex: 0,
+      pageSize: 25
+    };
+    this.showProductListings(this.productListings);
   }
 
   showConfig() {
@@ -42,8 +48,8 @@ export class ProductListComponent implements OnInit {
       } );
   }
   
-  showProductListings() {
-    this.productService.getProductListings().subscribe(
+  showProductListings(e) {
+    this.productService.getProductListings(e).subscribe(
       ( data ) => {
         this.productListings = data.body;
       },

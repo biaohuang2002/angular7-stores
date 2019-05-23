@@ -1,5 +1,12 @@
+<mat-paginator *ngIf="productListings&&productListings.count" 
+  [length]="productListings.count"
+  [pageSize]="productListings.pageSize"
+  [pageSizeOptions]="pageSizeOptions"
+  (page)="showProductListings($event)">
+</mat-paginator>
+
 <div style="display:flex;flex-direction:row;flex-wrap: wrap;">
-  <div *ngFor="let item of productListings; index as i;" class="product-item">
+  <div *ngFor="let item of productListings.items; index as i;" class="product-item">
     <article class="example-card">
       <a routerLink="/product/{{item.handle}}" style="text-decoration: none;">
       <mat-card>
