@@ -10,21 +10,9 @@ import { Config } from './config.interface';
   providedIn: 'root'
 } )
 export class ProductService {
-  configUrl = 'assets/config.json';
-
-  constructor( private http: HttpClient ) { }
-
-  getConfig() {
-    return this.http.get<Config>( this.configUrl ).pipe(
-      catchError( this.handleError )
-    );
-  }
-
-  getConfigResponse(): Observable<HttpResponse<Config>> {
-    return this.http.get<Config>(
-      this.configUrl, { observe: 'response' }
-    );
-  }
+  productListings = {};
+  
+  constructor( public http: HttpClient ) { }
 
   private handleError( error: HttpErrorResponse ) {
     if ( error.error instanceof ErrorEvent ) {
@@ -42,8 +30,12 @@ export class ProductService {
       'Something bad happened; please try again later.' );
   };
 
-  getProductListings(e) {
-    return this.http.get(`/products/product-listings?page-size=${e.pageSize}&page-index=${e.pageIndex}`, { observe: 'response' } );
+  getProductListings(queryParams) {
+    this.productListings["items"] = [];
+    this.productListings["pageSize"] = +queryParams["page-size"] || this.productListings["pageSize"] || 36;
+    this.productListings["pageIndex"] = +queryParams["page-index"] || this.productListings["pageIndex"] || 0;
+    
+    return this.http.get(`/products/product-listings?page-size=${this.productListings["pageSize"]}&page-index=${this.productListings["pageIndex"]}`, { observe: 'response' } );
   }
 
 }
