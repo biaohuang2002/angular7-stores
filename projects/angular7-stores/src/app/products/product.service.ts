@@ -33,8 +33,8 @@ export class ProductService {
      && +queryParams["page-index"] === this.productListings["pageIndex"] ) return empty();
     
     this.productListings["items"] = [];
-    this.productListings["pageSize"] = +queryParams["page-size"] || this.productListings["pageSize"] || 36;
-    this.productListings["pageIndex"] = +queryParams["page-index"] || this.productListings["pageIndex"] || 0;
+    this.productListings["pageSize"] = +queryParams["page-size"] === 0 ? +queryParams["page-size"] : +queryParams["page-size"] || this.productListings["pageSize"] || 36;
+    this.productListings["pageIndex"] = +queryParams["page-index"] === 0 ? +queryParams["page-index"] : +queryParams["page-index"] || this.productListings["pageIndex"] || 0;
     
     return this.http.get(`/products/product-listings?page-size=${this.productListings["pageSize"]}&page-index=${this.productListings["pageIndex"]}`, { observe: 'response' } );
   }
