@@ -29,8 +29,10 @@ export class ProductListComponent implements OnInit {
       } )
     ).subscribe(
       ( data ) => {
-        this.productListings = data["body"];
-        this.onPaginatorChanges( this.productListings );
+        if (data) {
+          this.productListings = data["body"];
+          this.onPaginatorChanges( this.productListings );
+        }
       }
     );
 

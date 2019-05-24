@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, empty } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-
-import { Config } from './config.interface';
 
 @Injectable( {
   providedIn: 'root'
@@ -31,6 +29,9 @@ export class ProductService {
   };
 
   getProductListings(queryParams) {
+    if ( +queryParams["page-size"] === this.productListings["pageSize"] 
+     && +queryParams["page-index"] === this.productListings["pageIndex"] ) return empty();
+    
     this.productListings["items"] = [];
     this.productListings["pageSize"] = +queryParams["page-size"] || this.productListings["pageSize"] || 36;
     this.productListings["pageIndex"] = +queryParams["page-index"] || this.productListings["pageIndex"] || 0;
