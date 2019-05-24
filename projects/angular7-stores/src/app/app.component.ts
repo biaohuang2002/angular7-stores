@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { BreakpointService } from './breakpoint.service'
 
-import {TranslateService, LangChangeEvent} from '@ngx-translate/core';
+import { MatPaginationIntlService } from './mat-pagination-intl.service';
 
 @Component({
   selector: 'app-root',
@@ -11,24 +11,14 @@ import {TranslateService, LangChangeEvent} from '@ngx-translate/core';
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'angular7-stores';
+  translate;
   
-  constructor(public _breakpointService: BreakpointService, public translate: TranslateService) {
+  constructor(public _breakpointService: BreakpointService, public matPaginationIntlService: MatPaginationIntlService) {
     this._breakpointService.breakpointSubscriber();
-
-    translate.addLangs(['en', 'fr']);
-    translate.setDefaultLang('en');
-
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
+    this.translate = matPaginationIntlService.translate;
   }
   
   ngOnInit() {
-    this.translate.get('HOME.TITLE').subscribe((res: string) => {
-      console.log(res);
-    });
-    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
-      console.log(event);
-    });
   }
   
   ngOnDestroy() {

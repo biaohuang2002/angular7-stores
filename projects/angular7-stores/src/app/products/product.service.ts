@@ -43,7 +43,7 @@ export class ProductService {
   };
 
   getProductListings(e) {
-    return this.http.get(`/products//product-listings?page-size=${e.pageSize}&page-index=${e.pageIndex}`, { observe: 'response' } );
+    return this.http.get(`/products/product-listings?page-size=${e.pageSize}&page-index=${e.pageIndex}`, { observe: 'response' } );
   }
 
 }

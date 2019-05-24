@@ -16,6 +16,12 @@ export class MatPaginationIntlService extends MatPaginatorIntl {
   constructor(public translate: TranslateService) { 
     super();
 
+    translate.addLangs(['en', 'fr']);
+    translate.setDefaultLang('en');
+
+    const browserLang = translate.getBrowserLang();
+    translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
+
     translate.onLangChange.subscribe((event: LangChangeEvent) => {
       this.translateLabels();
       this.changes.next();

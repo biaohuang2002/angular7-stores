@@ -14,12 +14,12 @@ import { CustomMaterialModule } from './custom-material.module';
 import { MatPaginatorIntl } from '@angular/material';
 import { MatPaginationIntlService } from './mat-pagination-intl.service';
 
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 //AoT requires an exported function for factories
-export function HttpLoaderFactory(httpClient: HttpClient) {
-  return new TranslateHttpLoader(httpClient);
+export function HttpLoaderFactory( httpClient: HttpClient ) {
+  return new TranslateHttpLoader( httpClient );
 }
 
 @NgModule( {
@@ -33,13 +33,13 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     // import HttpClientModule after BrowserModule.
     HttpClientModule,
     BrowserAnimationsModule,
-    TranslateModule.forRoot({
+    TranslateModule.forRoot( {
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    }),
+    } ),
     ProductsModule,
     CustomMaterialModule,
     AppRoutingModule
