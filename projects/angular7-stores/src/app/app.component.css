@@ -18,16 +18,12 @@
   z-index: 2;
 }
 
-.main {
+.main-container {
 	overflow-y: auto;
 }
 
-.example-card {
-	max-width: 400px;
-}
-
-.example-header-image {
-	background-image:
-		url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-	background-size: cover;
+.mat-toolbar-row, .main, .footer {
+	min-width: 480px;
+	max-width: 1280px;
+	margin: 0 auto;
 }
