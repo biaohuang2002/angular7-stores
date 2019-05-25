@@ -27,8 +27,8 @@
             <span>Disable alerts</span>
           </button>
         </mat-menu>
-        <a mat-button [routerLink]="['/dashboard']">Dashboard</a> 
-        <a mat-button [routerLink]="['/products']"  routerLinkActive="active">Products</a> 
+        <a mat-button [routerLink]="['/dashboard']" [routerLinkActive]="['active', 'dashboard']">Dashboard</a> 
+        <a mat-button [routerLink]="['/products']" [routerLinkActive]="['active', 'products']">Products</a> 
       </mat-toolbar-row>
     </mat-toolbar>
   </nav>
