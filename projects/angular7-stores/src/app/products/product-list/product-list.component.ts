@@ -3,7 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 import { ProductService } from '../product.service';
 import { throwError } from 'rxjs';
-import { switchMap, distinctUntilChanged } from 'rxjs/operators';
+import { switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component( {
   selector: 'app-product-list',
@@ -12,7 +12,6 @@ import { switchMap, distinctUntilChanged } from 'rxjs/operators';
 } )
 export class ProductListComponent implements OnInit {
   productListings = {};
-  error: any;
   pageSizeOptions: number[] = [];
 
   constructor(
@@ -24,18 +23,20 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.queryParams.pipe(
-      switchMap( ( queryParams: ParamMap ) => {
+      debounceTime(500),
+      distinctUntilChanged(),
+      switchMap(( queryParams: ParamMap ) => {
         return this.productService.getProductListings( queryParams );
       } )
     ).subscribe(
       ( data ) => {
-        if (data) {
-          this.productListings = data["body"];
-          this.onPaginatorChanges( this.productListings );
-        }
-      }
-    );
-
+        this.productListings = data["body"];
+        this.onPaginatorChanges( this.productListings );
+      }, ( err ) => {
+        console.error( err );
+      }, () => {
+        console.log( 'Complete!' );
+      } );
   }
 
   onPaginatorChanges( e ) {

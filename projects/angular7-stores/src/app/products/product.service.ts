@@ -30,7 +30,10 @@ export class ProductService {
 
   getProductListings(queryParams) {
     if ( +queryParams["page-size"] === this.productListings["pageSize"] 
-     && +queryParams["page-index"] === this.productListings["pageIndex"] ) return empty();
+     && +queryParams["page-index"] === this.productListings["pageIndex"] ) {
+      console.log('empty();');
+      return empty();
+     }
     
     this.productListings["items"] = [];
     this.productListings["pageSize"] = +queryParams["page-size"] === 0 ? +queryParams["page-size"] : +queryParams["page-size"] || this.productListings["pageSize"] || 36;
