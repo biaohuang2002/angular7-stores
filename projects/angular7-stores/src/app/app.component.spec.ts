@@ -1,6 +1,23 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
 import { AppComponent } from './app.component';
+
+import { CustomMaterialModule } from './custom-material.module';
+import { BreakpointService } from './breakpoint.service'
+import { MatPaginatorIntl } from '@angular/material';
+import { MatPaginationIntlService } from './mat-pagination-intl.service';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+//AoT requires an exported function for factories
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+export function HttpLoaderFactory( httpClient: HttpClient ) {
+  return new TranslateHttpLoader( httpClient );
+}
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -9,7 +26,20 @@ describe('AppComponent', () => {
         AppComponent
       ],
       imports: [
-        RouterTestingModule
+        CustomMaterialModule
+        , RouterTestingModule
+        , HttpClientTestingModule
+        , TranslateModule.forRoot( {
+          loader: {
+            provide: TranslateLoader,
+            useFactory: HttpLoaderFactory,
+            deps: [HttpClient]
+          }
+        } ),
+      ],
+      providers: [
+        BreakpointService
+        , { provide: MatPaginatorIntl, useClass: MatPaginationIntlService }
       ]
     }).compileComponents();
   }));

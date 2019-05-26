@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
 import { BreakpointService } from './breakpoint.service'
-
 import { MatPaginationIntlService } from './mat-pagination-intl.service';
 
 @Component({
