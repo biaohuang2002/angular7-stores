@@ -6,7 +6,7 @@
   $name: nth(map-keys($grid-breakpoints), $i);
   @include media-breakpoint-only($name, $grid-breakpoints) {
     .product-item {
-      width: ( 100 / $i ) + %;
+      width: ( 100 / if( $i == 1, $i + 1 , $i ) ) + %;
       height: 100%;
       padding: 8px;
       box-sizing: border-box;

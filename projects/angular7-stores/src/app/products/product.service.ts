@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
-import { Observable, throwError, empty } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable, throwError, empty, of } from 'rxjs';
+import { catchError, retry, map } from 'rxjs/operators';
 
 @Injectable( {
   providedIn: 'root'
 } )
 export class ProductService {
   productListings = {};
+  
+  responseData;
   
   constructor( public http: HttpClient ) { }
 
@@ -31,15 +33,20 @@ export class ProductService {
   getProductListings(queryParams) {
     if ( +queryParams["page-size"] === this.productListings["pageSize"] 
      && +queryParams["page-index"] === this.productListings["pageIndex"] ) {
-      console.log('empty();');
-      return empty();
+      console.log('old responseData');
+      return this.responseData ? of(this.responseData) : empty();
      }
     
     this.productListings["items"] = [];
     this.productListings["pageSize"] = +queryParams["page-size"] === 0 ? +queryParams["page-size"] : +queryParams["page-size"] || this.productListings["pageSize"] || 36;
     this.productListings["pageIndex"] = +queryParams["page-index"] === 0 ? +queryParams["page-index"] : +queryParams["page-index"] || this.productListings["pageIndex"] || 0;
     
-    return this.http.get(`/products/product-listings?page-size=${this.productListings["pageSize"]}&page-index=${this.productListings["pageIndex"]}`, { observe: 'response' } );
+    return this.http.get(`/products/product-listings?page-size=${this.productListings["pageSize"]}&page-index=${this.productListings["pageIndex"]}`, { observe: 'response' } ).pipe(
+      map( (data) => {
+        this.responseData = data;
+        return this.responseData;
+      } )
+    );
   }
 
 }

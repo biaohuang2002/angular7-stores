@@ -11,12 +11,12 @@
     <article>
       <a [routerLink]="['/product', item.handle]" style="text-decoration: none;">
       <mat-card>
+        <img mat-card-image *ngIf="item.images.length>0" src="{{item.images[0].src}}" alt="{{item.handle}}">
         <mat-card-header>
           <div mat-card-avatar *ngIf="item.images.length>0" [ngStyle]="{'background-image':'url('+item.images[item.images.length-1].src+')','background-size':'cover'}"></div>
           <mat-card-title style="font-size:14px;">{{item.title}}</mat-card-title>
           <mat-card-subtitle>{{item.product_type}}</mat-card-subtitle>
         </mat-card-header>
-        <img mat-card-image *ngIf="item.images.length>0" src="{{item.images[0].src}}" alt="{{item.handle}}">
         <mat-card-content>
 <!--           <p [innerHTML]="item.body_html"></p> -->
           <span>{{item.variants[0].price | currency}}</span>

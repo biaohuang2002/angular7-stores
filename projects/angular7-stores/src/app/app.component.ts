@@ -3,6 +3,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { BreakpointService } from './breakpoint.service'
 import { MatPaginationIntlService } from './mat-pagination-intl.service';
 
+import { of } from 'rxjs';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,6 +20,12 @@ export class AppComponent implements OnInit, OnDestroy {
   }
   
   ngOnInit() {
+    //emits values of any type
+    const source = of(null, undefined, { name: 'Brian' }, [1, 2, 3], function hello() {
+      return 'Hello';
+    });
+    //output: {name: 'Brian}, [1,2,3], function hello() { return 'Hello' }
+    const subscribe = source.subscribe(val => console.log(val));
   }
   
   ngOnDestroy() {
