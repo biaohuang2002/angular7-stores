@@ -6,7 +6,7 @@
   (page)="onPaginatorChanges($event)">
 </mat-paginator>
 
-<div style="display:flex;flex-direction:row;flex-wrap: wrap;">
+<div *ngIf="productListings" style="display:flex;flex-direction:row;flex-wrap: wrap;">
   <div *ngFor="let item of productListings.items; index as i;" class="product-item">
     <article>
       <a [routerLink]="['/product', item.handle]" style="text-decoration: none;">

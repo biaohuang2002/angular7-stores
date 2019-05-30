@@ -11,7 +11,7 @@ import { switchMap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./product-list.component.scss']
 } )
 export class ProductListComponent implements OnInit {
-  productListings = {};
+  productListings;
   pageSizeOptions: number[] = [];
 
   constructor(
